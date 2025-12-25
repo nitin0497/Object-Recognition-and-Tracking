@@ -41,7 +41,7 @@ The project highlights how **interpretable classical vision methods** and **deep
 
 ---
 
-## Part 1: Shape Detection and Tracking
+## Part 1: Object Detection and Tracking
 
 ### Pipeline Overview
 
@@ -64,15 +64,19 @@ The project highlights how **interpretable classical vision methods** and **deep
 
 ### Matching Cost Function
 
-\[
-Cost_{i,j} = \alpha \cdot \|C_i - C_j\|^2 + \beta \cdot (r_i - r_j)^2
-\]
+For circle *i* in frame *t* and circle *j* in frame *t + 1*:
 
-Where:
-- \(C_i, C_j\): centers of detected circles
-- \(r_i, r_j\): radii
-- \(\alpha = 0.1\)
-- \(\beta = 0.9\) (enforces strict radius consistency)
+```
+Cost(i, j) = α · ||C_i − C_j||² + β · (r_i − r_j)²
+```
+
+**Where:**
+- `C_i` and `C_j` are the centers of circles *i* and *j* in consecutive frames  
+- `||C_i − C_j||` denotes the Euclidean distance between the two circle centers  
+- `r_i` and `r_j` are the corresponding radii  
+- `α = 0.1` controls the contribution of spatial distance  
+- `β = 0.9` enforces strict radius matching
+
 
 ---
 
@@ -86,7 +90,13 @@ Where:
 
 **Qualitative Results**
 - Stable tracking with minimal drift
-- Clear visualization of detected and predicted objects
+- Clear visualisation of detected and predicted objects
+
+### Shape Tracking Demo
+
+[![Bubble Tracking Demo](Bubble%20Tracking%20CV/output/Final_bubble_tracking_output.gif)](Bubble%20Tracking%20CV/output/Final_bubble_tracking_output.mp4)
+
+
 
 ---
 
@@ -128,6 +138,9 @@ Where:
 |-------|----------|
 | MNIST test set | ~99% |
 | External handwritten image | 97% (97/100 correct) |
+
+<img width="778" height="812" alt="image" src="https://github.com/user-attachments/assets/447e2cea-f3d3-498e-8d6d-4597f73ad4e7" />
+
 
 **Key Observations**
 - Strong generalization beyond MNIST
